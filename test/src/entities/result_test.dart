@@ -48,6 +48,21 @@ void main() {
           expect(left.isLeft, true);
         },
       );
+      
+      test(
+        'Should not be a right | getter isRight',
+        () {
+          // Arrange
+          const leftData = 'left';
+
+          // Act
+          final left = Left(leftData);
+
+          // Assert
+          expect(left, isA<Left>());
+          expect(left.isRight, false);
+        },
+      );
 
       test(
         'Should have a value on left side | call()',
@@ -98,6 +113,21 @@ void main() {
           // Assert
           expect(right, isA<Right>());
           expect(right.isRight, true);
+        },
+      );
+
+      test(
+        'Should not be a left | getter isLeft',
+        () {
+          // Arrange
+          const rightData = 'right';
+
+          // Act
+          final right = Right(rightData);
+
+          // Assert
+          expect(right, isA<Right>());
+          expect(right.isLeft, false);
         },
       );
 
