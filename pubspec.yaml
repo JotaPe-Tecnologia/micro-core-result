@@ -1,5 +1,5 @@
 name: micro_core_result
-description: A simple approach inspired on dartz package.
+description: This package is a simple approach to return multiple values, inspired on dartz package.
 version: 0.0.1
 homepage: https://www.jotapetecnologia.com.br/flutter/packages/micro_core_result
 
