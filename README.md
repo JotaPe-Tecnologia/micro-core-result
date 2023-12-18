@@ -37,7 +37,7 @@ void getNames() async {
     final result = await getNamesFromAPI();
 
     result(
-        (exception) => print('Exception => ${exception.toString()}'); 
+        id,
         (names) => print('Names => $names'); 
     );
 }
@@ -54,12 +54,18 @@ Future<Result<Exception, Empty>> createNameOnDatabase() async {
     } 
 }
 
-void createName() async {
-    final result = await createNameOnDatabase();
+ Future<Result<Exception, Empty>> createName(String name) async {
+    final result = await _repository.createName(name);
 
-    result(
-        (exception) => print('Exception => ${exception.toString()}'); 
-        (_) => print('Name Created'); 
+    return result(
+      (e) {
+        print('Exception => ${e.toString()}');
+        return Left(e);
+      },
+      (e) {
+        print('Name was created successfully!');
+        return Right(e);
+      },
     );
-}
+  }
 ```

@@ -30,12 +30,18 @@ class Controller {
 
   Controller(this._repository);
 
-  void createName(String name) async {
+  Future<Result<Exception, Empty>> createName(String name) async {
     final result = await _repository.createName(name);
 
-    result(
-      (exception) => print('Exception => ${exception.toString()}'),
-      (_) => print('Name was created successfully!'),
+    return result(
+      (e) {
+        print('Exception => ${e.toString()}');
+        return Left(e);
+      },
+      (e) {
+        print('Name was created successfully!');
+        return Right(e);
+      },
     );
   }
 
@@ -43,7 +49,7 @@ class Controller {
     final result = await _repository.listNames();
 
     result(
-      (exception) => print('Exception => ${exception.toString()}'),
+      id,
       (namesList) {
         print('Names before: $names');
         names.addAll(namesList);
