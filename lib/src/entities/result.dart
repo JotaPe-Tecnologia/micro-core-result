@@ -14,7 +14,7 @@
 
 /// Interface of the [Left] and [Right] sides of the returned value.
 abstract interface class Result<L, R> {
-  void call(void Function(L l) left, void Function(R r) right);
+  T call<T>(T Function(L l) left, T Function(R r) right);
 
   bool get isLeft;
 
@@ -28,7 +28,7 @@ final class Left<L, R> extends Result<L, R> {
   Left(this.l);
 
   @override
-  void call(void Function(L l) left, void Function(R r) right) => left(l);
+  T call<T>(T Function(L l) left, T Function(R r) right) => left(l);
 
   @override
   bool get isLeft => true;
@@ -44,7 +44,7 @@ final class Right<L, R> extends Result<L, R> {
   Right(this.r);
 
   @override
-  void call(void Function(L l) left, void Function(R r) right) => right(r);
+  T call<T>(T Function(L l) left, T Function(R r) right) => right(r);
 
   @override
   bool get isLeft => false;

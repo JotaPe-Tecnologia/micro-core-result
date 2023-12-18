@@ -30,12 +30,18 @@ class Controller {
 
   Controller(this._repository);
 
-  void createName(String name) async {
+  Future<Result<Exception, Empty>> createName(String name) async {
     final result = await _repository.createName(name);
 
-    result(
-      (exception) => print('Exception => ${exception.toString()}'),
-      (_) => print('Name was created successfully!'),
+    return result(
+      (exception) {
+        print('Exception => ${exception.toString()}');
+        return Left(exception);
+      },
+      (e) {
+        print('Name was created successfully!');
+        return Right(e);
+      },
     );
   }
 
