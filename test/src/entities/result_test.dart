@@ -80,6 +80,29 @@ void main() {
           );
         },
       );
+
+      test(
+        'Should return the left result object to other callable functions.',
+        () {
+          // Arrange
+          const leftData = 'left';
+          const newLeftDate = 'new left data';
+          final left = Left<String, String>(leftData);
+
+          // Act
+          final Result result = left(
+            (leftSide) => Left(newLeftDate),
+            (rightSide) => Right(rightSide),
+          );
+
+          // Assert
+          expect(result, isA<Left>());
+          result(
+            (leftSide) => expect(leftSide, equals(newLeftDate)),
+            id,
+          );
+        },
+      );
     },
   );
 
@@ -147,6 +170,29 @@ void main() {
           );
         },
       );
+
+      test(
+        'Should return the right result object to other callable functions.',
+        () {
+          // Arrange
+          const rightData = 'right';
+          const newRightData = 'new right data';
+          final right = Right<String, String>(rightData);
+
+          // Act
+          final Result result = right(
+            (leftSide) => Left(leftSide),
+            (rightSide) => Right(newRightData),
+          );
+
+          // Assert
+          expect(result, isA<Right>());
+          result(
+            id,
+            (rightSide) => expect(rightSide, equals(newRightData)),
+          );
+        },
+      );
     },
   );
 
@@ -159,7 +205,7 @@ void main() {
           // Arrange
           const leftData = 'left';
           final left = Left(leftData);
-          
+
           // Act
           final result = left(id, id);
 
