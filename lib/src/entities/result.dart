@@ -52,3 +52,5 @@ final class Right<L, R> extends Result<L, R> {
   @override
   bool get isRight => true;
 }
+
+T id<T>(T callback) => callback;

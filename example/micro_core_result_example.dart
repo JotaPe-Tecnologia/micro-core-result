@@ -34,9 +34,9 @@ class Controller {
     final result = await _repository.createName(name);
 
     return result(
-      (exception) {
-        print('Exception => ${exception.toString()}');
-        return Left(exception);
+      (e) {
+        print('Exception => ${e.toString()}');
+        return Left(e);
       },
       (e) {
         print('Name was created successfully!');
@@ -49,7 +49,7 @@ class Controller {
     final result = await _repository.listNames();
 
     result(
-      (exception) => print('Exception => ${exception.toString()}'),
+      id,
       (namesList) {
         print('Names before: $names');
         names.addAll(namesList);
