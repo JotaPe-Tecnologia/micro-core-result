@@ -1,3 +1,8 @@
+## 0.2.2
+
+* Result now is able to return any type of value, instead of just void.
+* Adding id function to reduce dead code.
+
 ## 0.2.1
 
 * Updating Github Actions from Flutter to Dart.
