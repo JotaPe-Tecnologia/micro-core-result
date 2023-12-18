@@ -149,4 +149,24 @@ void main() {
       );
     },
   );
+
+  group(
+    'id |',
+    () {
+      test(
+        'Should return the same value as any call() parameters',
+        () {
+          // Arrange
+          const leftData = 'left';
+          final left = Left(leftData);
+          
+          // Act
+          final result = left(id, id);
+
+          // Assert
+          expect(result, isA<String>());
+        },
+      );
+    },
+  );
 }
